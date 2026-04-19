@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetLove - Hệ Thống Quản Lý Thú Cưng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .home-wrap { font-family: 'Quicksand', sans-serif; }
+        .home-hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; margin-bottom: 60px; }
+        .hero-text h1 { font-size: 38px; color: #d81b60; margin-bottom: 15px; }
+        .hero-text p { font-size: 16px; line-height: 1.7; color: #555; }
+        .hero-btn { margin-top: 20px; display: inline-block; padding: 12px 22px; background: #d81b60; color: #fff; border-radius: 25px; cursor: pointer; transition: 0.3s; }
+        .hero-btn:hover { background: #b91450; }
+        .hero-img img { width: 100%; border-radius: 20px; }
+        .ai-box { background: #fff0f2; border-radius: 20px; padding: 30px; margin-bottom: 60px; text-align: center; }
+        .ai-box h2 { color: #ff5c7a; }
+        .ai-flow { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+        .ai-step { background: #fff; padding: 15px; border-radius: 15px; width: 120px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .trust-row { display: flex; justify-content: space-between; margin-bottom: 50px; text-align: center; }
+        .trust-item h3 { color: #d81b60; }
+        .list-title { text-align: center; margin-bottom: 20px; color: #ff8a9e; }
+        @media (max-width:768px){
+            .home-hero { grid-template-columns: 1fr; }
+            .ai-flow { flex-direction: column; align-items: center; }
+            .trust-row { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="UI.showPage('home-page')">PetLove 🐾</div>
+            <div class="nav-menu" style="display: flex; align-items: center; gap: 15px;">
+                <button id="nav-home" onclick="UI.showPage('home-page')">TRANG CHỦ</button>
+                <button id="nav-product" onclick="UI.showPage('product-page')">SẢN PHẨM</button>
+                <button data-slug="gioi-thieu">GIỚI THIỆU</button>
+                <button data-slug="lien-he">LIÊN HỆ</button>
+                <button id="nav-detect" onclick="UI.showPage('detect-page')">NHẬN DIỆN AI</button>
+                <button id="nav-post" class="btn-post hidden" onclick="UI.showPage('post-page')">ĐĂNG BÀI</button>
+                
+                <button id="nav-inbox" onclick="UI.showInboxPage()">TIN NHẮN</button>
+                
+                <button id="nav-login-item" onclick="UI.showPage('login-page')" 
+                        style="background: none; border: 1px solid var(--primary-pink); color: var(--primary-pink); border-radius: 20px; padding: 5px 15px;">
+                    ĐĂNG NHẬP
+                </button>
+
+                <div id="user-info" class="hidden" style="display: flex; align-items: center; gap: 8px; padding: 4px 12px; background: #fff; border-radius: 50px; border: 1px solid #ffafbd;">
+                    <img id="user-avatar" src="" style="width: 28px; height: 28px; border-radius: 50%;">
+                    <span id="user-name" style="font-weight: 700; color: #d81b60; font-size: 13px;"></span>
+                    <i class="fa fa-sign-out-alt" onclick="app.logout()" title="Đăng xuất" style="color: #888; cursor: pointer; margin-left: 5px;"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="home-page" class="view">
+            <div class="home-wrap">
+                <div class="home-hero">
+                    <div class="hero-text">
+                        <h1>Tìm đúng chú cún bạn cần</h1>
+                        <p>Không cần biết tên giống, không cần tìm kiếm phức tạp. PetLove giúp bạn tìm ra chú chó bạn thích chỉ với một bức ảnh.</p>
+                        <p>Chúng tôi kết hợp giữa <b>công nghệ AI</b> và hệ thống dữ liệu để mang đến trải nghiệm tìm kiếm hoàn toàn mới.</p>
+                        <div class="hero-btn" onclick="UI.showPage('detect-page')">Thử nhận diện ngay</div>
+                    </div>
+                    <div class="hero-img">
+                        <img src="https://img.freepik.com/free-photo/happy-dog-running-grass_23-2148196235.jpg" alt="PetLove Hero">
+                    </div>
+                    
+    </div>
+
+
+<div class="ai-box" style="background: linear-gradient(135deg, #fff0f2 0%, #ffffff 100%); border: 1px solid #ffeff2;">
+    <h2 style="color: #d81b60; font-size: 28px; margin-bottom: 10px;">Khám phá cún cưng cùng công nghệ AI</h2>
+    <p style="color: #666; margin-bottom: 30px;">Bạn thấy một bé cún xinh nhưng không biết tên? Đừng lo, PetLove sẽ giúp bạn!</p>
+    
+    <div class="ai-flow">
+        <div class="ai-step" style="width: 150px; transition: 0.3s;">
+            <div style="font-size: 35px; margin-bottom: 10px;">📸</div>
+            <strong style="color: #333; display: block; margin-bottom: 5px;">1. Chụp ảnh</strong>
+            <small style="color: #888; font-size: 12px; line-height: 1.3;">Tải lên ảnh bé cún bạn yêu thích</small>
+        </div>
+
+        <div class="ai-step" style="width: 150px; border: 2px solid #ff758c; transform: scale(1.05);">
+            <div style="font-size: 35px; margin-bottom: 10px;">🤖</div>
+            <strong style="color: #d81b60; display: block; margin-bottom: 5px;">2. AI Phân tích</strong>
+            <small style="color: #888; font-size: 12px; line-height: 1.3;">Hệ thống xác định giống chó chuẩn</small>
+        </div>
+
+        <div class="ai-step" style="width: 150px; transition: 0.3s;">
+            <div style="font-size: 35px; margin-bottom: 10px;">🏠</div>
+            <strong style="color: #333; display: block; margin-bottom: 5px;">3. Đón bé về</strong>
+            <small style="color: #888; font-size: 12px; line-height: 1.3;">Gợi ý các bé đang có tại shop</small>
+        </div>
+    </div>
+
+    <div class="hero-btn" style="margin-top: 35px; padding: 12px 40px;" onclick="UI.showPage('detect-page')">
+        Trải nghiệm AI ngay <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+    </div>
+</div>
+
+<div class="trust-row">
+    <div class="trust-item">
+        <i class="fas fa-users" style="color: #ff758c; font-size: 24px; margin-bottom: 10px;"></i>
+        <h3>1000+</h3>
+        <p>Khách hàng tin tưởng</p>
+    </div>
+    <div class="trust-item">
+        <i class="fas fa-dog" style="color: #ff758c; font-size: 24px; margin-bottom: 10px;"></i>
+        <h3>200+</h3>
+        <p>Giống chó đa dạng</p>
+    </div>
+    <div class="trust-item">
+        <i class="fas fa-headset" style="color: #ff758c; font-size: 24px; margin-bottom: 10px;"></i>
+        <h3>24/7</h3>
+        <p>Hỗ trợ tận tâm</p>
+    </div>
+</div>
+
+                <h2 class="list-title">Khám phá cún cưng</h2>
+                <div id="dog-list" class="grid"></div>
+            </div>
+        </section>
+        <section id="inbox-page" class="view hidden">
+    <div style="display: flex; height: 80vh; background: #fff; border-radius: 10px; overflow: hidden;">
+
+        <!-- BÊN TRÁI: DANH SÁCH USER -->
+        <div id="inbox-list" style="width: 30%; border-right: 1px solid #ddd; overflow-y: auto;">
+        </div>
+
+        <!-- BÊN PHẢI: CHAT -->
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            
+            <div style="padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;" id="active-username">
+                Chọn người để chat
+            </div>
+
+            <div id="tk-chat-flow" style="flex:1; padding:10px; overflow-y:auto;"></div>
+
+<div class="chat-input-area-admin">
+    <input id="admin-reply-input" 
+           placeholder="Nhập tin nhắn trả lời..." 
+           onkeypress="if(event.key === 'Enter') UI.sendAdminReply()">
+           
+    <button class="btn-send-round" onclick="UI.sendAdminReply()">
+        <i class="fa-solid fa-paper-plane"></i>
+    </button>
+</div>
+
+        </div>
+    </div>
+</section>
+
+        <section id="product-page" class="view hidden">
+            <div class="product-wrap">
+                <h2 class="list-title" style="margin-top: 30px;">Tất cả cún cưng đang bán</h2>
+                <p style="text-align: center; color: #888; margin-bottom: 30px;">Tìm kiếm chú cún phù hợp nhất với bạn</p>
+                <div id="dog-list-all" class="grid"></div>
+            </div>
+        </section>
+
+        <section id="static-content-page" class="view hidden">
+            <div class="form-box" style="max-width: 900px; line-height: 1.8;">
+                <h1 id="static-title" style="color: var(--dark-pink);"></h1>
+                <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;">
+                <div id="static-body"></div>
+            </div>
+        </section>
+
+        <section id="post-page" class="view hidden">
+            <div class="form-box">
+                <h2><i class="fa fa-edit"></i> Đăng tin bán chó</h2>
+                <form id="post-form">
+                    <div class="form-group">
+                        <label>Tên chú chó</label>
+                        <input type="text" id="in-name" placeholder="VD: Alaska Tuyết Trắng" required>
+                    </div>
+                    <div style="display: flex; gap: 20px;">
+                        <div class="form-group" style="flex:1">
+                            <label>Giống chó</label>
+                            <input type="text" id="in-breed" placeholder="VD: Alaska" required>
+                        </div>
+                        <div class="form-group" style="flex:1">
+                            <label>Giá (VND)</label>
+                            <input type="number" id="in-price" placeholder="VD: 5000000" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select id="in-cate">
+                            <option value="Chó cảnh">Chó cảnh</option>
+                            <option value="Chó nghiệp vụ">Chó nghiệp vụ</option>
+                        </select>
+                    </div>
+<div class="form-group">
+    <label>Ảnh thú cưng</label>
+    <input type="file" id="in-img-file" accept="image/*" class="form-control" style="margin-bottom: 10px;">
+    
+    <p style="text-align: center; font-size: 0.8rem; color: #999; margin: 5px 0;">- HOẶC -</p>
+    
+    <input type="text" id="in-img" placeholder="Dán link ảnh online (nếu có)" class="form-control">
+
+    <div id="img-preview-wrap" class="hidden" style="margin-top: 10px; text-align: center;">
+        <img id="post-img-preview" src="" style="max-width: 100%; height: 150px; border-radius: 10px; object-fit: cover; border: 1px solid #ddd;">
+    </div>
+</div>
+                    <button type="submit" class="btn-submit">XÁC NHẬN ĐĂNG BÁN</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="detect-page" class="view hidden">
+            <div class="form-box" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2 style="color: var(--dark-pink); margin-bottom: 25px;">AI Nhận diện giống chó</h2>
+                <div id="ai-drop-area" style="border: 3px dashed var(--primary-pink); padding: 50px 20px; border-radius: 20px; background: #fffafb; cursor: pointer;">
+                    <input type="file" id="ai-input" accept="image/*" hidden>
+                    <div id="ai-init-view">
+                        <i class="fa fa-cloud-upload fa-4x" style="color: var(--primary-pink); margin-bottom: 15px;"></i>
+                        <p>Kéo thả ảnh hoặc click để chọn ảnh chú chó</p>
+                        <button class="btn-post" style="border:none; margin-top:10px;" onclick="document.getElementById('ai-input').click()">CHỌN ẢNH</button>
+                    </div>
+                    <div id="ai-preview-view" class="hidden">
+                        <img id="ai-img-preview" src="" style="max-width: 100%; max-height: 300px; border-radius: 15px; margin-bottom: 15px;">
+                        <div id="ai-status" style="font-weight: bold; color: var(--dark-pink);"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="login-page" class="view hidden">
+            <div class="login-wrapper">
+                <div class="form-box" style="max-width: 400px; margin: 0 auto;">
+                    <div class="login-header" style="text-align: center; margin-bottom: 20px;">
+                        <i class="fa fa-paw fa-3x" style="color: var(--primary-pink);"></i>
+                        <h2>Chào mừng quay trở lại!</h2>
+                    </div>
+                    <form id="login-form" onsubmit="app.handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-user"><i class="fa fa-user"></i> Tài khoản</label>
+                            <input type="text" id="login-user" placeholder="Nhập tài khoản..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-pass"><i class="fa fa-lock"></i> Mật khẩu</label>
+                            <input type="password" id="login-pass" placeholder="Nhập mật khẩu..." required>
+                        </div>
+                        <button type="submit" class="btn-submit">ĐĂNG NHẬP NGAY</button>
+                        <div style="text-align: center; margin-top: 15px;">
+                        <p style="font-size: 14px; color: #666;">
+                            Chưa có tài khoản? 
+                            <a href="#" onclick="UI.showPage('register-page')" style="color: var(--dark-pink); font-weight: bold;">Đăng ký tại đây</a>
+                        </p>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    
+            </div><section id="register-page" class="view hidden">
+            <div class="login-wrapper">
+                <div class="form-box" style="max-width: 400px; margin: 0 auto;">
+                    <div class="login-header" style="text-align: center; margin-bottom: 20px;">
+                        <i class="fa fa-user-plus fa-3x" style="color: var(--primary-pink);"></i>
+                        <h2>Tạo tài khoản mới</h2>
+                        <p>Gia nhập gia đình PetLove ngay!</p>
+                    </div>
+                    <form id="register-form" onsubmit="app.handleRegister(event)">
+                        <div class="form-group">
+                            <label for="reg-fullname"><i class="fa fa-signature"></i> Họ và tên</label>
+                            <input type="text" id="reg-fullname" placeholder="VD: Phạm Đắc Thanh" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-user"><i class="fa fa-user"></i> Tên đăng nhập</label>
+                            <input type="text" id="reg-user" placeholder="Nhập tên tài khoản..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-pass"><i class="fa fa-lock"></i> Mật khẩu</label>
+                            <input type="password" id="reg-pass" placeholder="Nhập mật khẩu..." required>
+                        </div>
+                        <button type="submit" class="btn-submit">ĐĂNG KÝ NGAY</button>
+                    </form>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <p style="font-size: 14px; color: #666;">
+                            Đã có tài khoản? 
+                            <a href="#" onclick="UI.showPage('login-page')" style="color: var(--dark-pink); font-weight: bold;">Đăng nhập</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <div id="chat-toggle" class="floating-chat" onclick="UI.toggleChat()">
+    💬
+</div>
+
+<div id="chat-box" class="hidden">
+    <div id="chat-header">
+        <span>Hỗ trợ khách hàng</span>
+        <span onclick="UI.toggleChat()" style="cursor: pointer; padding: 5px;">✖</span>
+    </div>
+
+    <div id="chat-content"></div>
+
+    <div id="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Nhập tin nhắn..."onkeypress="if(event.key === 'Enter') UI.sendMessage()">
+        
+        <button onclick="UI.sendMessage()">Gửi</button>
+    </div>
+</div>
+
+    <div id="ai-popup" class="ai-popup-overlay hidden">
+    <div class="ai-popup-content">
+        <button class="close-popup" onclick="closeAiPopup()">&times;</button>
+        <div class="popup-icon">
+            <i class="fas fa-robot"></i>
+        </div>
+        <h2>Bạn chưa biết tên loài chó bạn thích?</h2>
+        <p>Đừng lo, chỉ với một tấm ảnh, công nghệ AI của chúng tôi có thể đưa ra câu trả lời chính xác cho bạn trong tích tắc!</p>
+        <button class="btn-popup-action" onclick="goToAIDetect()">Thử ngay miễn phí</button>
+    </div>
+    </div>
+    <div id="toast-container"></div>
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/ui.js"></script>
+    <script type="module" src="js/app.js"></script>
+
+    
+</body>
+</html>
