@@ -233,7 +233,7 @@ bindEvents() {
             if (result.success && result.predictions.length > 0) {
                 let htmlResults = `
                     <div class="result-box" style="background:#fff; padding:15px; border-radius:10px; border:2px solid #ffafbd; margin-top:10px; color: #333;">
-                        <p style="font-weight:bold; color:#ff758c; margin-bottom:10px;">🎯 Top dự đoán từ AI:</p>
+                        <p style="font-weight:bold; color:#ff758c; margin-bottom:10px;">Dự đoán từ AI:</p>
                         <ul style="list-style:none; padding:0; margin:0;">
                 `;
 
@@ -375,9 +375,28 @@ logout() {
             }
         }
     },
+    resetAiUpload() {
+    // 1. Reset giá trị input file về rỗng để có thể chọn lại chính tấm ảnh vừa rồi nếu muốn
+    const aiInput = document.getElementById('ai-input');
+    if (aiInput) aiInput.value = '';
+
+    // 2. Ẩn vùng hiển thị kết quả hiện tại đi
+    const previewView = document.getElementById('ai-preview-view');
+    if (previewView) previewView.classList.add('hidden');
+
+    // 3. Hiển thị lại vùng kéo thả ảnh ban đầu (vùng có icon đám mây)
+    const initView = document.getElementById('ai-init-view');
+    if (initView) initView.classList.remove('hidden');
+    
+    // 4. Làm sạch chữ kết quả cũ của lần tra cứu trước
+    const aiStatus = document.getElementById('ai-status');
+    if (aiStatus) aiStatus.innerHTML = '';
+},
     
 
 };
+
+
 
 
 // Hiển thị popup sau 3 giây khi vào trang
