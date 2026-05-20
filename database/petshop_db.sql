@@ -53,6 +53,10 @@ INSERT INTO `dogs` (`id`, `name`, `breed`, `price`, `category`, `image_url`, `cr
 (25, 'Coca', 'Husky', 3000000.00, 'Chó cảnh', 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Siberian-husky.jpg', '2026-04-16 04:41:38'),
 (26, 'Mr. Gold', 'Chó Sục Bò', 50000000.00, 'Chó cảnh', 'https://cdn.tgdd.vn/Files/2023/01/19/1504110/cho-suc-bo-nguon-goc-dac-diem-cach-nuoi-gia-ban-202301190702005838.jpg', '2026-04-16 04:48:14');
 
+INSERT INTO `dogs` (`id`, `name`, `breed`, `price`, `category`, `image_url`)
+VALUES
+(27, 'Milu', 'Poodle', 8000000.00, 'Chó cảnh', 'https://images.unsplash.com/photo-...'),
+(28, 'Shiro', 'Shiba Inu', 15000000.00, 'Chó cảnh', 'https://images.unsplash.com/photo-...');
 -- --------------------------------------------------------
 
 --
