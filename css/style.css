@@ -1,0 +1,660 @@
+:root {
+    --primary-pink: #ffafbd;
+    --dark-pink: #ff8a9e;
+    --light-pink: #fff0f2;
+    --text-color: #444;
+    --bg-color: #fafafa;
+    --white: #ffffff;
+    --shadow: 0 10px 25px rgba(255, 175, 189, 0.2);
+    --luxury-gradient: linear-gradient(45deg, #ff8a9e, #ffafbd);
+}
+
+* { box-sizing: border-box; font-family: 'Quicksand', 'Segoe UI', sans-serif; }
+body { margin: 0; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+
+/* --- Header & Menu --- */
+.navbar { background: var(--white); box-shadow: var(--shadow); padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+.nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.logo { font-size: 26px; font-weight: bold; color: var(--dark-pink); cursor: pointer; letter-spacing: -1px; }
+
+.nav-menu button { 
+    background: none; border: none; padding: 10px 15px; cursor: pointer; 
+    font-weight: 600; color: #666; transition: 0.3s; 
+}
+.nav-menu button:hover { color: var(--dark-pink); }
+
+.btn-post { 
+    background: linear-gradient(45deg, #ffafbd, #ffc3a0) !important; 
+    color: white !important; border-radius: 50px; 
+    padding: 8px 25px !important; box-shadow: 0 4px 15px rgba(255, 175, 189, 0.4); 
+}
+
+/* --- Layout --- */
+.container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+
+/* --- Product Card (Đã tối ưu sang trọng) --- */
+.card { 
+    background: var(--white); border-radius: 20px; overflow: hidden; 
+    box-shadow: 0 10px 20px rgba(255, 175, 189, 0.1); 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    position: relative; border: 1px solid #fff0f2;
+}
+
+.card:hover { 
+    transform: translateY(-12px); 
+    box-shadow: 0 20px 40px rgba(255, 175, 189, 0.3); 
+}
+
+.card-img { width: 100%; height: 260px; object-fit: cover; transition: 0.6s; }
+.card:hover .card-img { transform: scale(1.08); }
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    /* Căn giữa theo trục ngang */
+    justify-content: center; /* Căn giữa theo trục dọc */
+    width: 100%;            /* Quan trọng: Ép container rộng hết cỡ */
+    text-align: center;     /* Hỗ trợ thêm cho các trình duyệt cũ */
+}
+
+.card-title { 
+    font-weight: 700; color: #333; font-size: 1.2rem; 
+    margin-bottom: 5px; display: block; 
+}
+
+.card-content small { 
+    color: #aaa; display: block; margin-bottom: 12px; 
+    text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1.5px; 
+}
+
+.card-price {
+    /* Đổi sang dải màu đậm hơn để nổi bật chữ trắng */
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    
+    /* Chữ trắng tinh khiết giúp nổi bật số tiền */
+    color: #ffffff; 
+    
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    
+    /* Căn giữa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Đổ bóng có màu hồng nhẹ để tạo độ sâu */
+    box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+    
+    /* Viền trắng mờ để làm nút trông sắc sảo hơn */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    
+    margin: 15px auto 0 auto;
+    width: fit-content;
+    min-width: 150px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); /* Tạo bóng nhẹ cho chữ để dễ đọc hơn */
+}
+
+.card-price:hover {
+    /* Hiệu ứng khi di chuột: Sáng hơn và hơi bay lên */
+    background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(255, 117, 140, 0.5);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Thêm đơn vị VNĐ phía sau cho chuyên nghiệp */
+.card-price::after {
+    content: ' VNĐ';
+    font-size: 0.8rem;
+    margin-left: 5px;
+    opacity: 0.9;
+}
+
+/* --- Forms & Admin --- */
+.form-box { background: var(--white); padding: 35px; border-radius: 25px; box-shadow: var(--shadow); max-width: 600px; margin: 0 auto; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+
+.form-group input, .form-group select, .form-group textarea { 
+    width: 100%; padding: 14px; border: 2px solid var(--light-pink); 
+    border-radius: 12px; outline: none; transition: 0.3s;
+}
+
+.form-group input:focus { border-color: var(--primary-pink); background: #fff; }
+
+.btn-submit { 
+    width: 100%; padding: 16px; background: var(--dark-pink); 
+    color: white; border: none; border-radius: 12px; 
+    font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.3s;
+}
+.btn-submit:hover { background: #ff7188; transform: scale(1.02); }
+
+/* --- Admin Helpers --- */
+.btn-delete {
+    position: absolute; top: 15px; right: 15px; 
+    background: rgba(255, 255, 255, 0.85); color: #ff4757; 
+    border: none; width: 38px; height: 38px; border-radius: 50%; 
+    cursor: pointer; z-index: 10; transition: 0.3s;
+    display: flex; align-items: center; justify-content: center;
+}
+.btn-delete:hover { background: #ff4757; color: white; transform: rotate(90deg); }
+
+.hidden { display: none !important ; }
+
+/* --- Toast Notification --- */
+#toast-container { position: fixed; top: 90px; right: 20px; z-index: 9999; }
+.toast { 
+    background: white; padding: 18px 30px; border-radius: 15px; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin-bottom: 12px;
+    border-left: 6px solid var(--dark-pink);
+    animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h2 {
+    color: var(--dark-pink);
+    margin-top: 15px;
+    font-size: 1.8rem;
+}
+
+.login-header p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.forgot-pass {
+    color: var(--primary-pink);
+    text-decoration: none;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.login-footer a {
+    color: var(--dark-pink);
+    font-weight: bold;
+    text-decoration: none;
+}
+.nav-menu {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 15px;           /* Khoảng cách giữa các nút */
+    flex-wrap: nowrap;   /* Tuyệt đối không cho xuống dòng */
+}
+
+/* Đảm bảo các nút và cụm user có cùng kích thước/font để không bị lệch */
+.nav-menu button, 
+.nav-menu #nav-login-item,
+#user-info {
+    white-space: nowrap; /* Không cho chữ trong nút bị ngắt dòng */
+}
+
+@keyframes slideIn { from { transform: translateX(120%); } to { transform: translateX(0); } }
+
+/* Overlay làm mờ nền */
+.ai-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+/* Nội dung Popup */
+.ai-popup-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    animation: zoomIn 0.4s ease; /* Hiệu ứng hiện ra */
+}
+
+/* Biểu tượng AI */
+.popup-icon {
+    font-size: 50px;
+    color: #ff758c;
+    margin-bottom: 20px;
+}
+
+.ai-popup-content h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.ai-popup-content p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* Nút bấm nổi bật */
+.btn-popup-action {
+    background: linear-gradient(45deg, #ff758c, #ffafbd);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-popup-action:hover {
+    transform: scale(1.05);
+}
+
+/* Nút đóng x */
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+}
+
+/* Hiệu ứng ẩn/hiện */
+.hidden { display: none; }
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* Container chính của hàng thống kê */
+.trust-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 60px 0;
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); /* Đổ bóng nhẹ tinh tế */
+}
+
+/* Từng item bên trong */
+.trust-item {
+    flex: 1;
+    padding: 20px;
+    border-right: 1px solid #eee; /* Đường kẻ dọc ngăn cách */
+    transition: transform 0.3s ease;
+}
+
+.trust-item:last-child {
+    border-right: none; /* Xóa đường kẻ ở item cuối cùng */
+}
+
+.trust-item:hover {
+    transform: translateY(-5px); /* Hiệu ứng nhấc lên khi di chuột */
+}
+
+/* Số liệu (h3) */
+.trust-item h3 {
+    font-size: 36px;
+    color: #d81b60; /* Màu hồng đậm đặc trưng của bạn */
+    margin-bottom: 5px;
+    font-weight: 800;
+}
+
+/* Chữ mô tả (p) */
+.trust-item p {
+    font-size: 15px;
+    color: #777;
+    font-weight: 600;
+    text-transform: uppercase; /* Viết hoa để nhìn chuyên nghiệp hơn */
+    letter-spacing: 0.5px;
+}
+
+/* Tablet và Mobile: Xếp dọc lại cho đẹp */
+@media (max-width: 768px) {
+    .trust-row {
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px;
+    }
+    .trust-item {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    .trust-item:last-child {
+        border-bottom: none;
+    }
+}
+
+
+/* Khung chat */
+#chat-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    height: 420px;
+    background: white;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    z-index: 9999;
+}
+
+/* Header */
+#chat-header {
+    background: #ff8a9e;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Nội dung chat */
+#chat-content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #fafafa;
+}
+
+/* Input */
+#chat-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+#chat-input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+}
+
+#chat-input-area button {
+    background: #ff8a9e;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+}
+/* ===== CHAT ADMIN ===== */
+.tk-msg {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.tk-msg.admin {
+    justify-content: flex-end;
+}
+
+.tk-msg.customer {
+    justify-content: flex-start;
+}
+
+.tk-bubble {
+    max-width: 70%;
+    padding: 10px 14px;
+    border-radius: 15px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.tk-msg.admin .tk-bubble {
+    background: #ff8a9e;
+    color: white;
+}
+
+.tk-msg.customer .tk-bubble {
+    background: #f1f1f1;
+    color: black;
+}
+.inbox-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.inbox-item:hover {
+    background: #fff0f2;
+}
+
+.inbox-item.active {
+    background: #ffe4ea;
+}
+/* 1. Class ẩn - Cực kỳ quan trọng để JS hoạt động */
+.hidden {
+    display: none !important;
+}
+
+/* 2. Nút bong bóng chat (Dùng 1 ID duy nhất là chat-toggle cho khớp HTML của bạn) */
+#chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #ff758c;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 9999; /* Đảm bảo nằm trên mọi thứ */
+}
+
+/* 3. Khung chat box */
+#chat-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    height: 450px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column; /* Xếp Header - Body - Footer */
+    overflow: hidden;
+}
+
+/* 4. Thân chat - Chứa tin nhắn */
+#chat-content {
+    flex: 1; /* Nở ra để chiếm chỗ trống */
+    overflow-y: auto;
+    padding: 15px;
+    background: #f9f9f9;
+}
+
+/* 5. Header và Footer */
+#chat-header {
+    background: #ff758c;
+    color: white;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Khu vực nhập liệu dính đáy */
+#chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    gap: 10px;
+}
+
+/* Ô nhập liệu hiện đại */
+#chat-input {
+    flex: 1;
+    border: 1px solid #eee;
+    padding: 10px 15px;
+    border-radius: 25px; /* Bo tròn hẳn tạo cảm giác mềm mại */
+    outline: none;
+    font-size: 0.9rem;
+    background: #f8f8f8;
+    transition: all 0.3s ease;
+}
+
+#chat-input:focus {
+    background: #fff;
+    border-color: #ff8a9e; /* Đổi màu viền khi click vào */
+    box-shadow: 0 0 5px rgba(255, 138, 158, 0.2);
+}
+
+/* Nút gửi phong cách mới */
+#chat-input-area button {
+    background: #ff8a9e;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Nút gửi hình tròn */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+    box-shadow: 0 3px 8px rgba(255, 138, 158, 0.3);
+}
+
+#chat-input-area button:hover {
+    background: #ff758c;
+    transform: scale(1.05); /* Phóng to nhẹ khi di chuột vào */
+}
+
+#chat-input-area button:active {
+    transform: scale(0.95);
+}
+/* Container nhập liệu mới - Thêm gap: 10px để không bị dính chùm */
+.chat-input-area-admin { 
+    padding: 15px 20px; 
+    border-top: 1px solid #eee; 
+    display: flex; 
+    align-items: center; 
+    background: #fff;
+    gap: 10px;
+}
+
+/* Ô nhập liệu - Bo tròn mượt mà hơn */
+#admin-reply-input { 
+    flex: 1; 
+    padding: 12px 18px; 
+    border: 1.5px solid #f0f0f0; 
+    border-radius: 25px; 
+    outline: none;
+    font-size: 0.9rem;
+    background: #fcfcfc;
+    transition: all 0.3s ease;
+}
+
+#admin-reply-input:focus {
+    border-color: #ff8a9e; /* Màu hồng PetLove */
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 138, 158, 0.2);
+}
+
+/* NÚT GỬI HÌNH TRÒN - Bí quyết đẹp là đây */
+.btn-send-round { 
+    background: linear-gradient(135deg, #ff8a9e 0%, #ff6a82 100%); 
+    color: white; 
+    border: none; 
+    width: 42px; 
+    height: 42px; 
+    min-width: 42px; /* Đảm bảo nút luôn tròn trịa */
+    border-radius: 50%; /* Tạo hình tròn hoàn hảo */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(255, 138, 158, 0.3);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    padding: 0; /* Xóa padding mặc định của button */
+}
+
+.btn-send-round:hover {
+    transform: scale(1.1); /* Phóng to nhẹ khi di chuột vào */
+    box-shadow: 0 6px 15px rgba(255, 138, 158, 0.4);
+}
+
+.btn-send-round:active {
+    transform: scale(0.9); /* Hiệu ứng nhấn nút lún xuống */
+}
+/* Làm đẹp ô nhập và nút gửi cho trang Chat/Inbox */
+.chat-input-area-admin {
+    display: flex;
+    padding: 15px;
+    background: #fff;
+    gap: 10px;
+}
+
+#admin-reply-input {
+    flex: 1;
+    border: 1px solid #eee !important;
+    border-radius: 25px !important;
+    padding: 10px 20px !important;
+    outline: none;
+}
+
+.btn-send-round {
+    background: #ff8a9e !important; /* Màu hồng thương hiệu của Thanh */
+    color: white !important;
+    border: none !important;
+    width: 45px;
+    height: 45px;
+    border-radius: 50% !important;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 138, 158, 0.3);
+}
