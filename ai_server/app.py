@@ -66,17 +66,31 @@ def predict():
         # Lấy Top 3 kết quả cao nhất
         top3_prob, top3_idx = torch.topk(probabilities, 3)
 
+    # LẤY KẾT QUẢ CAO NHẤT (TOP 1) ĐỂ KIỂM TRA XEM CÓ PHẢI LÀ CHÓ KHÔNG
+    top1_idx = top3_idx[0].item()
+    
+    # Bộ dữ liệu ImageNet quy định: ID từ 151 đến 268 là các giống chó
+    if not (151 <= top1_idx <= 268):
+        return jsonify({
+            'success': False,
+            'error': 'Hệ thống không nhận diện được loài chó nào trong ảnh. Vui lòng thử lại với ảnh con chó!'
+        }), 400
+
+    # NẾU ĐÚNG LÀ CHÓ, TIẾN HÀNH TRẢ VỀ CÁC GIỐNG CHÓ DỰ ĐOÁN
     results = []
     for i in range(3):
-        idx = str(top3_idx[i].item()) # Chuyển sang string để tìm trong dictionary
-        # Lấy tên từ file JSON nội bộ, nếu không thấy thì để là "Unknown"
-        breed_name = labels_data.get(idx, "Không xác định")
-        confidence = top3_prob[i].item() * 100
+        idx_int = top3_idx[i].item()
+        idx_str = str(idx_int)
         
-        results.append({
-            "breed": breed_name,
-            "confidence": f"{confidence:.2f}%"
-        })
+        # Chỉ lấy kết quả nếu nó nằm trong danh mục loài chó để tránh bị lẫn vật khác ở Top 2, Top 3
+        if 151 <= idx_int <= 268:
+            breed_name = labels_data.get(idx_str, "Giống chó lạ")
+            confidence = top3_prob[i].item() * 100
+            
+            results.append({
+                "breed": breed_name,
+                "confidence": f"{confidence:.2f}%"
+            })
 
     return jsonify({
         'success': True,
