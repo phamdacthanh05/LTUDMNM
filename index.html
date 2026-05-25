@@ -31,31 +31,35 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo" onclick="UI.showPage('home-page')">PetLove 🐾</div>
-            <div class="nav-menu" style="display: flex; align-items: center; gap: 15px;">
-                <button id="nav-home" onclick="UI.showPage('home-page')">TRANG CHỦ</button>
-                <button id="nav-product" onclick="UI.showPage('product-page')">SẢN PHẨM</button>
-                <button data-slug="gioi-thieu">GIỚI THIỆU</button>
-                <button data-slug="lien-he">LIÊN HỆ</button>
-                <button id="nav-detect" onclick="UI.showPage('detect-page')">NHẬN DIỆN AI</button>
-                <button id="nav-post" class="btn-post hidden" onclick="UI.showPage('post-page')">ĐĂNG BÀI</button>
-                
-                <button id="nav-inbox" onclick="UI.showInboxPage()">TIN NHẮN</button>
-                
-                <button id="nav-login-item" onclick="UI.showPage('login-page')" 
-                        style="background: none; border: 1px solid var(--primary-pink); color: var(--primary-pink); border-radius: 20px; padding: 5px 15px;">
-                    ĐĂNG NHẬP
-                </button>
+    <div class="nav-container">
+        <button id="menu-toggle" onclick="UI.toggleNavMenu()">
+            <i class="fa fa-bars"></i>
+        </button>
 
-                <div id="user-info" class="hidden" style="display: flex; align-items: center; gap: 8px; padding: 4px 12px; background: #fff; border-radius: 50px; border: 1px solid #ffafbd;">
-                    <img id="user-avatar" src="" style="width: 28px; height: 28px; border-radius: 50%;">
-                    <span id="user-name" style="font-weight: 700; color: #d81b60; font-size: 13px;"></span>
-                    <i class="fa fa-sign-out-alt" onclick="app.logout()" title="Đăng xuất" style="color: #888; cursor: pointer; margin-left: 5px;"></i>
-                </div>
+        <div class="logo" onclick="UI.showPage('home-page')">PetLove 🐾</div>
+        
+        <div id="nav-menu" class="nav-menu">
+            <button id="nav-home" onclick="UI.showPage('home-page'); UI.toggleNavMenu()">TRANG CHỦ</button>
+            <button id="nav-product" onclick="UI.showPage('product-page'); UI.toggleNavMenu()">SẢN PHẨM</button>
+            <button data-slug="gioi-thieu" onclick="UI.toggleNavMenu()">GIỚI THIỆU</button>
+            <button data-slug="lien-he" onclick="UI.toggleNavMenu()">LIÊN HỆ</button>
+            <button id="nav-detect" onclick="UI.showPage('detect-page'); UI.toggleNavMenu()">NHẬN DIỆN AI</button>
+            <button id="nav-post" class="btn-post hidden" onclick="UI.showPage('post-page'); UI.toggleNavMenu()">ĐĂNG BÀI</button>
+            <button id="nav-inbox" onclick="UI.showInboxPage(); UI.toggleNavMenu()">TIN NHẮN</button>
+            
+            <button id="nav-login-item" onclick="UI.showPage('login-page'); UI.toggleNavMenu()" 
+                    style="background: none; border: 1px solid var(--primary-pink); color: var(--primary-pink); border-radius: 20px; padding: 5px 15px;">
+                ĐĂNG NHẬP
+            </button>
+
+            <div id="user-info" class="hidden" style="display: flex; align-items: center; gap: 8px; padding: 4px 12px; background: #fff; border-radius: 50px; border: 1px solid #ffafbd;">
+                <img id="user-avatar" src="" style="width: 28px; height: 28px; border-radius: 50%;">
+                <span id="user-name" style="font-weight: 700; color: #d81b60; font-size: 13px;"></span>
+                <i class="fa fa-sign-out-alt" onclick="app.logout()" title="Đăng xuất" style="color: #888; cursor: pointer; margin-left: 5px;"></i>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="container">
         <section id="home-page" class="view">
@@ -122,6 +126,20 @@
 </div>
 
                 <h2 class="list-title">Khám phá cún cưng</h2>
+<div class="filter-bar" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 25px;">
+    <select id="filter-category" onchange="UI.filterDogs()">
+        <option value="all">Tất cả danh mục</option>
+        <option value="Chó cảnh">Chó cảnh</option>
+        <option value="Chó nghiệp vụ">Chó nghiệp vụ</option>
+    </select>
+
+    <select id="filter-price" onchange="UI.filterDogs()">
+        <option value="all">Mọi mức giá</option>
+        <option value="low">Dưới 5 triệu</option>
+        <option value="mid">5 - 10 triệu</option>
+        <option value="high">Trên 10 triệu</option>
+    </select>
+</div>
                 <div id="dog-list" class="grid"></div>
             </div>
         </section>

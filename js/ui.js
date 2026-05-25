@@ -1,5 +1,6 @@
 // js/ui.js
 export const UI = {
+    allDogsData: [],
     seenUsers: {},
     chatInterval: null,
     inboxInterval: null,
@@ -222,6 +223,7 @@ async loadDetailMessages(customerId) {
             clearInterval(this.inboxInterval);
         }
     },
+    
 
     // --- 5. Hiển thị thông báo Toast (Giữ nguyên của em) ---
     showNotification(message, type = 'success') {
@@ -241,8 +243,56 @@ async loadDetailMessages(customerId) {
             toast.style.transform = 'translateY(-20px)';
             setTimeout(() => toast.remove(), 500);
         }, 3000);
+    },
+    // Hàm này gọi sau khi load xong dữ liệu từ server
+    setDogData(dogs) {
+        this.allDogsData = dogs;
+    },
+    toggleUserMenu() {
+    const menu = document.getElementById('user-dropdown');
+    if (menu) {
+        menu.classList.toggle('hidden');
     }
+},
+// Thêm hàm này vào đối tượng UI
+toggleNavMenu() {
+    const menu = document.getElementById('nav-menu');
+    if (menu) {
+        menu.classList.toggle('active');
+    }
+},
+
+filterDogs() {
+    const category = document.getElementById('filter-category').value;
+    const priceRange = document.getElementById('filter-price').value;
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Lọc dữ liệu
+    let filtered = this.allDogsData.filter(dog => {
+        const matchCategory = (category === 'all' || dog.category === category);
+        let matchPrice = true;
+        const price = Number(dog.price);
+        
+        if (priceRange === 'low') matchPrice = price < 5000000;
+        else if (priceRange === 'mid') matchPrice = price >= 5000000 && price <= 10000000;
+        else if (priceRange === 'high') matchPrice = price > 10000000;
+        
+        return matchCategory && matchPrice;
+    });
+
+    // Tự động tìm xem trang nào đang hiển thị để update
+    const containerHome = document.getElementById('dog-list');
+    const containerAll = document.getElementById('dog-list-all');
+
+    if (containerHome && containerHome.offsetParent !== null) {
+        this.renderDogList(filtered, currentUser, 'dog-list');
+    }
+    if (containerAll && containerAll.offsetParent !== null) {
+        this.renderDogList(filtered, currentUser, 'dog-list-all');
+    }
+}
 };
+
 
 
 // Khởi tạo

@@ -82,6 +82,7 @@ checkAuth() {
         try {
             const dogs = await DogAPI.getDogs();
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            UI.allDogsData = dogs;
             UI.renderDogList(dogs, currentUser, 'dog-list');
             UI.renderDogList(dogs, currentUser, 'dog-list-all');
         } catch (error) {
@@ -428,6 +429,7 @@ setInterval(() => {
         UI.loadMessages(); 
     }
 }, 2000);
+
 
 
 window.app = app;

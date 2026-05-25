@@ -649,7 +649,7 @@ body { margin: 0; background-color: var(--bg-color); color: var(--text-color); l
 }
 
 .btn-send-round {
-    background: #ff8a9e !important; /* Màu hồng thương hiệu của Thanh */
+    background: #ff8a9e !important; 
     color: white !important;
     border: none !important;
     width: 45px;
@@ -657,4 +657,107 @@ body { margin: 0; background-color: var(--bg-color); color: var(--text-color); l
     border-radius: 50% !important;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(255, 138, 158, 0.3);
+}
+@media (max-width: 768px) {
+    .nav-container { padding: 0 15px; }
+    .logo { font-size: 20px; }
+    
+    /* Thu gọn menu để không bị tràn */
+    .nav-menu { gap: 5px; }
+    .nav-menu button { padding: 8px 10px; font-size: 0.85rem; }
+    
+    /* Ẩn bớt text nút nếu cần thiết */
+    .btn-post span { display: none; }
+    .btn-post { padding: 8px 12px !important; }
+}
+@media (max-width: 600px) {
+    .grid { 
+        grid-template-columns: 1fr 1fr; /* 2 cột trên điện thoại */
+        gap: 15px; 
+    }
+    .card-img { height: 180px; }
+    .card-title { font-size: 1rem; }
+    .card-price { font-size: 0.9rem; padding: 8px 15px; }
+}
+
+@media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; } /* 1 cột trên màn hình siêu nhỏ */
+}
+@media (max-width: 480px) {
+    #chat-box {
+        width: 95% !important; /* Chiếm gần hết chiều ngang */
+        right: 2.5%;
+        bottom: 80px;
+        height: 400px;
+    }
+    
+    /* Làm phông chữ trong chat nhỏ lại chút để dễ nhìn */
+    .tk-bubble { max-width: 85%; font-size: 13px; }
+}
+@media (max-width: 600px) {
+    .form-box, .login-wrapper {
+        padding: 20px !important;
+        margin: 10px !important;
+        border-radius: 15px;
+    }
+    
+    /* Giảm padding của các ô nhập liệu */
+    .form-group input { padding: 12px; }
+}
+@media (max-width: 600px) {
+    .filter-bar select {
+        width: 100%; /* Trên mobile mỗi select chiếm 1 dòng */
+        margin-bottom: 5px;
+    }
+    .filter-bar {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+}
+/* Nút 3 gạch */
+#menu-toggle { display: none; background: none; border: none; font-size: 24px; color: #d81b60; cursor: pointer; }
+
+@media (max-width: 768px) {
+    #menu-toggle { display: block; }
+    
+    .nav-menu {
+        display: none !important; /* Ẩn menu trên mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 20px;
+        gap: 15px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        display: flex !important; /* Hiện menu khi bấm */
+    }
+}
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filter-bar select {
+    padding: 8px 25px;
+    border-radius: 50px; /* Bo tròn hoàn toàn */
+    border: 2px solid #ff8a9e; /* Viền đậm */
+    background: #fff; /* Nếu bạn vẫn cần nền, thì để nền trùng với background trang web của bạn */
+    /* HOẶC nếu muốn trong suốt: background: rgba(255, 255, 255, 0.1); */
+    color: #ff8a9e;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.filter-bar select:hover {
+    background: #ff8a9e;
+    color: white;
 }
